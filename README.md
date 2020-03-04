@@ -19,6 +19,7 @@ regex() // This is what type of regex you wanna use! (All types are listed below
 filter() // This is what type of filter validation u wanna use (All types are listed below)
 isRequired() // This is used if a value can not be empty and is required.
 load() // This check if validation was successful or not.
+cleanDisplay() // Only did this to display the sanitized strings!
 ```
 
 ### sanitize() Types

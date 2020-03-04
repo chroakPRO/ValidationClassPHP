@@ -2,14 +2,17 @@
 
 This is a validation class for php. You have regex validation, the standard filter_validate, and filter_sanitize.
 
-## Getting Started
+More will be added in the future.
 
-`include_once 'Validation.class.php'`
-`$validation = new Validation();`
+## Getting Started
+```php
+include_once 'Validation.class.php'
+$validation = new Validation();
+```
 
 ### Main Methods 
 
-``` 
+```php
 value() // This is the value you wanna validate.
 sanitize() // This is what type of sanitization you wanna use! (All types are listed below)
 regex() // This is what type of regex you wanna use! (All types are listed below)
@@ -19,8 +22,8 @@ load() // This check if validation was successful or not.
 ```
 
 ### sanitize() Types
-```
-        'string'             => FILTER_SANITIZE_STRING,
+```php
+        'string'            => FILTER_SANITIZE_STRING,
         'stripped'          => FILTER_SANITIZE_STRIPPED,
         'encoded'           => FILTER_SANITIZE_ENCODED,
         'special_chars'     => FILTER_SANITIZE_SPECIAL_CHARS,
@@ -31,7 +34,7 @@ load() // This check if validation was successful or not.
 ```
 
 ### regex() Types
-```
+```php
         'timezone'  => '[A-Za-z]',
         'date'      => '[0-9-]{6,8}',
         'username'  => '[a-zA-Z0-9]',
@@ -43,7 +46,7 @@ load() // This check if validation was successful or not.
 
 
 ### filter() Types
-```
+```php
         'email'     => FILTER_VALIDATE_EMAIL,
         'ip'        => FILTER_VALIDATE_IP,
         'int'       => FILTER_VALIDATE_INT,
@@ -54,7 +57,7 @@ load() // This check if validation was successful or not.
 
 ## Examples
 
-```
+```php
    $validation->value($date1)->sanitize('string')->regex('date')->isRequired();
    $validation->value($date2)->sanitize('string')->regex('date')->isRequired();
    $validation->value($timezone1)->sanitize('string')->regex('timezone')->isRequired();

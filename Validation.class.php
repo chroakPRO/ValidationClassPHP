@@ -1,6 +1,6 @@
 <?php
 Class Validation 
-{
+{    
     //Array med olika regex som vi kan välja mellan, det är det som kallas efter pattern('date') pattern('password')
     public $regexpatterns = array(
         'timezone'  => '[A-Za-z]',
@@ -28,12 +28,15 @@ Class Validation
         'number_int'        => FILTER_SANITIZE_NUMBER_INT,
         'number_float'      => FILTER_SANITIZE_NUMBER_FLOAT,
     );
+    public $cleanStrings = array ();
     //Här är metoden som sätter vilket värde vi vill validera.
-    public function value($value)
+   public function value($value)
     {
         $this->value = $value;
+        //För varje värde som kommer in som value, lägg in det i arrayn CleanStrings
+        array_push($this->cleanStrings, $this->value);
         return $this;
-    }
+    } 
     //Metoden som tittar om validering fungerade.
     public function load()
     {
@@ -49,7 +52,6 @@ Class Validation
         $this->error = $error;
         return $this;
     }
-    
     //Metod som används för att testa om värdet är tomt eller null
     public function isRequired()
     {
@@ -91,19 +93,27 @@ Class Validation
             //Fyller strängen error, så det inte är tom, om filter_var inte lyckades.
             $this->error = "He";
         }
+        return $this;
     }
         //Main metoden för alla för programmerade filter sanitize alternativ
-       public function sanitize($pattern)
-    {
-        $this->filter = $pattern;
-        //Det här överför information till en annan variabel. För att enklare läsa koden.
-        //Här väljer vilken typ av sanering vi vill använda.
-        $conversion = $this->sanitizepattern[$pattern];
-        //Här sanerare vi värdet.
-        if (!filter_var($this->value, $conversion))
+        public function sanitize($pattern)
         {
-            //Fyller strängen error, så det inte är tom, om filter_var inte lyckades.
-            $this->error = "He";
+            $this->filter = $pattern;
+            //Det här överför information till en annan variabel. För att enklare läsa koden.
+            //Här väljer vilken typ av sanering vi vill använda.
+            $conversion = $this->sanitizepattern[$pattern];
+            //Här sanerare vi värdet.
+            $this->value = filter_var($this->value, $conversion);
+            return $this;
         }
-    }
+        //För att visa att stringarna är tvättade
+        public function cleanDisplay()
+        {
+            //för varje element i cleanString, skriv ut det, med ett mellanrum.
+            foreach($this->cleanStrings as $display)
+            {
+                //För varje
+                Echo "<br>$display";
+            }
+        }
 }

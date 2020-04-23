@@ -19,7 +19,7 @@ Class Validation
     );
 //Array med alla för programmerade sanerare.
     public $sanitizepattern = array (
-        'string'             => FILTER_SANITIZE_STRING,
+        'string'            => FILTER_SANITIZE_STRING,
         'stripped'          => FILTER_SANITIZE_STRIPPED,
         'encoded'           => FILTER_SANITIZE_ENCODED,
         'special_chars'     => FILTER_SANITIZE_SPECIAL_CHARS,

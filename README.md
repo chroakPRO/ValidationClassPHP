@@ -58,8 +58,12 @@ cleanDisplay() // Only did this to display the sanitized strings!
 
 ## Examples
 
+
+This sort dosent work atm, since it a return function so if u try to clean the string like below it wont really work.
+
+
 ```php
-   $validation->value($date1)->sanitize('string')->regex('date')->isRequired();
+   if ($validation->value($date1)->sanitize('string')->regex('date')->isRequired();   
    $validation->value($date2)->sanitize('string')->regex('date')->isRequired();
    $validation->value($timezone1)->sanitize('string')->regex('timezone')->isRequired();
    $validation->value($timezone2)->sanitize('string')->regex('timezone')->isRequired();

@@ -59,21 +59,23 @@ cleanDisplay() // Only did this to display the sanitized strings!
 ## Examples
 
 
-This sort dosent work atm, since it a return function so if u try to clean the string like below it wont really work.
+This sort dosent work atm, since it a return function so if u try to sanitizie the string it wont work. Only validate work. Remove 
 
 
 ```php
-   if ($validation->value($date1)->sanitize('string')->regex('date')->isRequired();   
-   $validation->value($date2)->sanitize('string')->regex('date')->isRequired();
-   $validation->value($timezone1)->sanitize('string')->regex('timezone')->isRequired();
-   $validation->value($timezone2)->sanitize('string')->regex('timezone')->isRequired();
-   $validation->value($username)->sanitize('string')->regex('timezone')->isRequired();
-   $validation->value($email)->sanitize('email')->filter('email')->isRequired();
-   
-      if ($validation->load())
-   {
-      $validation->cleanDisplay();
-   }
 
+$validation2 = new \Validation();
+/Cleans strings.
+$this->user = filter_input(INPUT_POST, 'feedback-option', FILTER_SANITIZE_STRING);
+$this->feedback = filter_input(INPUT_POST, 'feedback-text', FILTER_SANITIZE_STRING);
+//Kontrollerar strängerna.
+$validation2->value($this->feedback)->regex('feedback-text')->isRequired();
+$validation2->value($this->user)->filter('int')->isRequired();
+//Om den inte går ingeom kontrollen
+if (!$validation2->load())
+{
+header ("Location: ../../../../Index.php?error=invalidinput");
+exit();
+}
 ```
 
